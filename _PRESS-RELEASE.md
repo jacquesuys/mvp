@@ -42,7 +42,7 @@ Once the project moves into development, the press release can be used as a touc
   "Document your pet's ancestry at for free."
 
 ## How to Get Started ##
-  Clone the repository and *run npm install*.
+  Clone the repository and **run npm install**.
 
 ## Customer Quote ##
   "I was able to generate _Kaboodle's_ family tree to share with relatives at no additional cost."
