@@ -20,7 +20,7 @@ Once the project moves into development, the press release can be used as a touc
   Genealogy for pets.
 
 ## Sub-Heading ##
-  Create a tribute to your beloved companions.
+  Create a tribute to your beloved companions, using Node JS.
 
 ## Summary ##
   * Import and create your pet's family tree.
