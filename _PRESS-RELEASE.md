@@ -23,29 +23,29 @@ Once the project moves into development, the press release can be used as a touc
   A family tree for your pets.
 
 ## Summary ##
-  Import and create loving tributes your pet's family tree.
-  Will allow breeders to establish their prized possession's lineage.
+  * Import and create loving tributes your pet's family tree.
+  * Will allow breeders to establish their prized possession's lineage.
 
 ## Problem ##
-  Purposely built for documenting your pet's family tree.
-  Expensive subscription fees with most services.
+  * Purposely built for documenting your pet's family tree.
+  * Expensive subscription fees with most services.
 
 ## Solution ##
-  Will take data and convert it into a family tree, using a tree data structure.
-  Allow for lookup on pet family members, by customizing searching DFS (depth first search) or BFS (breadth first search).
-  Return a file containing the generated family tree.
-  Visualize the family tree.
-  Enable sharing on platform(s).
-  Securely store the results in a DB.
+  * Will take data and convert it into a family tree, using a tree data structure.
+  * Allow for lookup on pet family members, by customizing searching DFS (depth first search) or BFS (breadth first search).
+  * Return a file containing the generated family tree.
+  * Visualize the family tree.
+  * Enable sharing on platform(s).
+  * Securely store the results in a DB.
 
 ## Quote from You ##
   "Document your pet's ancestry at for free."
 
 ## How to Get Started ##
-  Clone the repository and run npm install.
+  Clone the repository and *run npm install*.
 
 ## Customer Quote ##
-  "I was able to generate Kaboodle's family tree to share with relatives at no additional cost."
+  "I was able to generate _Kaboodle's_ family tree to share with relatives at no additional cost."
 
 ## Closing and Call to Action ##
   Create your pet's family tree. Share with family and friends.
