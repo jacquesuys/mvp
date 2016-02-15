@@ -39,7 +39,7 @@ Once the project moves into development, the press release can be used as a touc
   * Securely store the results in a DB.
 
 ## Quote from You ##
-  "Document your pet's ancestry at for free."
+  "Document your pet's ancestry, _for free_."
 
 ## How to Get Started ##
   Clone the repository and **run npm install**.
