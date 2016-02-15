@@ -1,5 +1,5 @@
 # Project Name #
-
+Gen(od)ealogy
 <!--
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
@@ -17,18 +17,18 @@ Once the project moves into development, the press release can be used as a touc
  -->
 
 ## Heading ##
-  Gen(od)ealogy
+  Genealogy for pets.
 
 ## Sub-Heading ##
-  A family tree for your pets.
+  Create a tribute to your beloved companions.
 
 ## Summary ##
-  * Import and create loving tributes your pet's family tree.
-  * Will allow breeders to establish their prized possession's lineage.
+  * Import and create your pet's family tree.
+  * Breeders can establish lineages.
 
 ## Problem ##
   * Purposely built for documenting your pet's family tree.
-  * Expensive subscription fees with most services.
+  * Expensive subscription fees with most genealogy services.
 
 ## Solution ##
   * Will take data and convert it into a family tree, using a tree data structure.
