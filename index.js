@@ -61,6 +61,18 @@ Pet.prototype.traverseDPS = function(callback){
   })(this);
 };
 
+function findIndex(arr, value) {
+    var index;
+
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].value === value) {
+            index = i;
+        }
+    }
+
+    return index;
+}
+
 var spike = new Pet("spike");
 
 spike.add("ben");
