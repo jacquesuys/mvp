@@ -1,24 +1,15 @@
-var Tree = function(value) {
-  var newTree = {};
-  newTree.value = value;
-  newTree.children = [];
-
-  for (key in treeMethods) {
-    newTree[key] = treeMethods[key];
-  }
-
-  return newTree;
+var Pet = function(name) {
+  this.name = name;
+  this.children = [];
 };
 
-var treeMethods = {};
-
-treeMethods.addChild = function(value) {
-  var child = Tree(value);
+Pet.prototype.add = function(name) {
+  var child = new Pet(name);
   this.children.push(child);
 };
 
-treeMethods.contains = function(target) {
-  if ( this.value === target ) {
+Pet.prototype.contains = function(target) {
+  if ( this.name === target ) {
     return true;
   }
   for ( var i = 0; i < this.children.length; i++ ) {
@@ -30,12 +21,18 @@ treeMethods.contains = function(target) {
   return false;
 };
 
-treeMethods.traverse = function(callback) {
-  callback(this.value);
+Pet.prototype.DPS = function(callback){
+  console.log(this.name);
 
-  if (!this.children) { return; }
-  for (var i = 0; i < this.children.length; i++) {
+  if(!this.children) { return; }
+
+  for(var i = 0; i < this.children.length; i++) {
     var child = this.children[i];
-    child.traverse(callback);
+    child.DPS(callback);
   }
-};
+}
+var spike = new Pet("spike");
+
+spike.add("ben");
+
+spike.DPS();

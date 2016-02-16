@@ -1,0 +1,21 @@
+Step 1
+Create node JS file that creates a tree data structure, using static input.
+
+Step 2
+Visually display that structure inside the terminal/console.
+
+Step 3
+Write a searcher function to query the tree: DPS & BPS.
+* Maybe hash the results.
+
+Step 4
+Output the data to files using the file system.
+
+Step 5
+Persist the data.
+
+Step 6
+Write an UI for the service; decide good ol' jQuery or D3.
+
+Step 7
+Use a MVC to create states and auth.
