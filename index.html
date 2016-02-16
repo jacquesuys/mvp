@@ -17,6 +17,15 @@
     tree.add(4, 6, tree.traverseDFS);
     tree.add(3, 6, tree.traverseDFS);
 
+    var pooches = {
+      {name: 'Poochy', sex: 'F', born: 1978, died: 1986, mother: null, father: null},
+      {name: 'Lady', sex: 'F', born: 1983, died: 1991, mother: 'Poochy', father: 'Tiberius'},
+      {name: 'Snoopy', sex: 'M', born: 1988, died: 1996, mother: 'Lady', father: 'Trump'},
+      {name: 'Scooby', sex: 'M', born: 1988, died: 1997, mother: 'Lady', father: 'Trump'},
+      {name: 'Lassie', sex: 'F', born: 1988, died: 1996, mother: 'Lady', father: 'Trump'},
+      {name: 'Pookie', sex: 'M', born: 2000, died: 2008, mother: 'Lassie', father: 'unknown'}
+    }
+
     var buildHTML = function(tree) {
 
       var $html = (function recurse(node) {
@@ -34,6 +43,8 @@
     };
 
     buildHTML(tree);
+
+    console.log(tree);
   });
 </script>
 </html>
