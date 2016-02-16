@@ -1,74 +1,84 @@
-var Pet = function(name) {
-  this.name = name;
-  this.children = [];
-  this.parent = null;
+var Tree = function(value) {
+    this.value = value;
+    this.children = [];
+    this.parent = null;
 };
 
-Pet.prototype.add = function(name, target, traversal) {
-  var child = new Pet(name);
-  var parent = null;
+Tree.prototype.contains = function(callback, traverse){
+    traverse.call(this, callback);
+}
 
-  var track = function(value, target) {
-    if (node.name === target) {
-      parent = node;
+Tree.prototype.add = function(value, target, traverse) {
+   var child = new Tree(value);
+   var parent = null;
+
+   var callback = function(node) {
+       if(node.value == target) {
+           parent = node;
+       }
+   };
+
+   this.contains(callback, traverse);
+
+   if (parent) {
+       parent.children.push(child);
+       child.parent = parent.value;
+   } else {
+        throw new Error('Can\'t find target node');
+   }
+}
+
+Tree.prototype.remove = function(value, target, traverse) {
+    var parent = null;
+    var index;
+    var callback = function(node) {
+        if(node.value === target) {
+            parent = node;
+        }
     }
-  };
 
-  this.contains(track, traversal);
+    this.contains(callback, traverse);
 
-  if (parent) {
-    parent.children.push(child);
-    child.parent = parent.name;
-  } else {
-    throw new Error('Can\'t find target node, to add');
-  }
-};
+    if (parent) {
+        index = findIndex(parent.children, value);
 
-Pet.prototype.contains = function(callback, traversal) {
-  traversal.call(this, callback);
-};
-
-Pet.prototype.remove = function(name, target, traversal) {
-  var parent = null;
-  var index;
-  var track = function(node) {
-    if (node.name === target) {
-      parent = node;
-    }
-  }
-
-  this.contains(track, traversal);
-
-  if (parent) {
-    index = findIndex(parent.children, value);
-
-    if (index === undefined) {
-      throw new Error('Can\'t find target node, to remove');
+        if (index === undefined) {
+            throw new Error('Target node doesn\'t exist');
+        } else {
+            parent.children.splice(index, 1);
+        }
     } else {
-      parent.children.splice(index, 1);
+        throw new Error('No such parent');
     }
-  } else {
-    throw new Error('No such parent');
-  }
-};
+}
 
-Pet.prototype.traverseDPS = function(callback) {
-  (function recurse(node) {
-    for (var i = 0; i < node.children.length; i++) {
-      recurse(node.children[i]);
-    }
-    callback(node);
-  })(this);
-};
+Tree.prototype.traverse = function(callback) {
+    (function recurse(node){
+        for(var i = 0; i < node.children.length; i++) {
+            recurse(node.children[i]);
+        }
+        callback(node);
+    })(this);
+}
 
 function findIndex(arr, value) {
-  var index;
+    var index;
 
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i].value === value) {
-      index = i;
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].value === value) {
+            index = i;
+        }
     }
-  }
 
-  return index;
+    return index;
 }
+
+var tree = new Tree(5);
+tree.add(6, 5, tree.traverse);
+tree.traverse(function(node){
+    console.log(node.value);
+});
+console.log(tree);
+
+tree.remove(6, 5, tree.traverse);
+console.log(tree);
