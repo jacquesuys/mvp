@@ -32,63 +32,43 @@ Pet.prototype.remove = function(name, target, traversal) {
   var parent = null;
   var index;
   var track = function(node) {
-      if (node.name === target) {
-          parent = node;
-      }
+    if (node.name === target) {
+      parent = node;
+    }
   }
 
   this.contains(track, traversal);
 
   if (parent) {
-      index = findIndex(parent.children, value);
+    index = findIndex(parent.children, value);
 
-      if (index === undefined) {
-          throw new Error('Can\'t find target node, to remove');
-      } else {
-          parent.children.splice(index, 1);
-      }
+    if (index === undefined) {
+      throw new Error('Can\'t find target node, to remove');
+    } else {
+      parent.children.splice(index, 1);
+    }
   } else {
-      throw new Error('No such parent');
+    throw new Error('No such parent');
   }
 };
 
-Pet.prototype.traverseDPS = function(callback){
-  (function recurse(node){
-    for(var i = 0; i < node.children.length; i++) {
-        recurse(node.children[i]);
+Pet.prototype.traverseDPS = function(callback) {
+  (function recurse(node) {
+    for (var i = 0; i < node.children.length; i++) {
+      recurse(node.children[i]);
     }
     callback(node);
   })(this);
 };
 
 function findIndex(arr, value) {
-    var index;
+  var index;
 
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i].value === value) {
-            index = i;
-        }
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i].value === value) {
+      index = i;
     }
+  }
 
-    return index;
+  return index;
 }
-
-var spike = new Pet("spike");
-
-spike.add("ben");
-
-spike.DPS();
-
-var arr = [1, [2, [3, [4, 5], 6], 7]];
-
-var printer = function(val, spacer) {
-   if ( Array.isArray(val) ) {
-       for (var i = 0; i < val.length; i++) {
-          printer( val[i], '  ' + spacer + '-');
-       }
-   } else {
-       console.log(spacer + ' (' + val + ')');
-   }
-}
-
-printer(arr, '+-');
