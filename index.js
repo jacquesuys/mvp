@@ -1,19 +1,19 @@
-var Tree = function(value) {
-  this.value = value;
+var Pet = function(name) {
+  this.name = name;
   this.children = [];
   this.parent = null;
 };
 
-Tree.prototype.contains = function(callback, traverse){
+Pet.prototype.contains = function(callback, traverse){
   traverse.call(this, callback);
 }
 
-Tree.prototype.add = function(value, target, traverse) {
-  var child = new Tree(value);
+Pet.prototype.add = function(name, target, traverse) {
+  var child = new Pet(name);
   var parent = null;
 
   var callback = function(node) {
-    if(node.value == target) {
+    if(node.name == target) {
       parent = node;
     }
   };
@@ -22,17 +22,17 @@ Tree.prototype.add = function(value, target, traverse) {
 
   if (parent) {
     parent.children.push(child);
-    child.parent = parent.value;
+    child.parent = parent.name;
   } else {
     throw new Error('Can\'t find target node');
   }
 }
 
-Tree.prototype.remove = function(value, target, traverse) {
+Pet.prototype.remove = function(name, target, traverse) {
   var parent = null;
   var index;
   var callback = function(node) {
-    if(node.value === target) {
+    if(node.name === target) {
       parent = node;
     }
   }
@@ -40,7 +40,7 @@ Tree.prototype.remove = function(value, target, traverse) {
   this.contains(callback, traverse);
 
   if (parent) {
-    index = findIndex(parent.children, value);
+    index = findIndex(parent.children, name);
 
     if (index === undefined) {
       throw new Error('Target node doesn\'t exist');
@@ -52,7 +52,7 @@ Tree.prototype.remove = function(value, target, traverse) {
   }
 }
 
-Tree.prototype.traverseDFS = function(callback) {
+Pet.prototype.traverseDFS = function(callback) {
   (function recurse(node){
     for(var i = 0; i < node.children.length; i++) {
       recurse(node.children[i]);
@@ -61,26 +61,26 @@ Tree.prototype.traverseDFS = function(callback) {
   })(this);
 }
 
-Tree.prototype.traverseBFS = function(callback) {
+Pet.prototype.traverseBFS = function(callback) {
   var queue = new Queue();
 
   queue.enqueue(this);
 
-  currentTree = queue.dequeue();
+  currentPet = queue.dequeue();
 
-  while(currentTree){
-    for (var i = 0, length = currentTree.children.length; i < length; i++) {
-      queue.enqueue(currentTree.children[i]);
+  while(currentPet){
+    for (var i = 0, length = currentPet.children.length; i < length; i++) {
+      queue.enqueue(currentPet.children[i]);
     }
 
-    callback(currentTree);
-    currentTree = queue.dequeue();
+    callback(currentPet);
+    currentPet = queue.dequeue();
   }
 };
 
-function findIndex(arr, value) {
+function findIndex(arr, name) {
   for (var i = 0; i < arr.length; i++) {
-    if (arr[i].value === value) {
+    if (arr[i].name === name) {
       return i;
     }
   }

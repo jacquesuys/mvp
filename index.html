@@ -10,7 +10,7 @@
 <script src="index.js"></script>
 <script>
   $(document).ready(function () {
-    var tree = new Tree(5);
+    var tree = new Pet(5);
 
     // add(name, targetNode, traversalMethod)
     tree.add(6, 5, tree.traverseDFS);
@@ -26,7 +26,7 @@
           str += recurse(node.children[i]);
         }
 
-        str += node.value + '</div>';
+        str += node.name + '</div>';
         return str;
       })(tree);
 
