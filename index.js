@@ -1,7 +1,8 @@
 var Pet = function(name) {
   this.name = name;
   this.children = [];
-  this.parent = null;
+  this.mother = null;
+  this.father = null;
 };
 
 Pet.prototype.contains = function(callback, traverse){
@@ -10,45 +11,45 @@ Pet.prototype.contains = function(callback, traverse){
 
 Pet.prototype.add = function(name, target, traverse) {
   var child = new Pet(name);
-  var parent = null;
+  var mother = null;
 
   var callback = function(node) {
     if(node.name == target) {
-      parent = node;
+      mother = node;
     }
   };
 
   this.contains(callback, traverse);
 
-  if (parent) {
-    parent.children.push(child);
-    child.parent = parent.name;
+  if (mother) {
+    mother.children.push(child);
+    child.mother = mother.name;
   } else {
     throw new Error('Can\'t find target node');
   }
 }
 
 Pet.prototype.remove = function(name, target, traverse) {
-  var parent = null;
+  var mother = null;
   var index;
   var callback = function(node) {
     if(node.name === target) {
-      parent = node;
+      mother = node;
     }
   }
 
   this.contains(callback, traverse);
 
-  if (parent) {
-    index = findIndex(parent.children, name);
+  if (mother) {
+    index = findIndex(mother.children, name);
 
     if (index === undefined) {
       throw new Error('Target node doesn\'t exist');
     } else {
-      parent.children.splice(index, 1);
+      mother.children.splice(index, 1);
     }
   } else {
-    throw new Error('No such parent');
+    throw new Error('No such mother');
   }
 }
 
