@@ -21,6 +21,15 @@ Pet.prototype.contains = function(target) {
   return false;
 };
 
+Pet.prototype.remove = function(target) {
+  if(!this.children) { return; }
+  if(this.value === target) {}
+  for(var i = 0; i < this.children.length; i++) {
+    var child = this.children[i];
+    child.remove(target);
+  }
+};
+
 Pet.prototype.DPS = function(callback){
   console.log(this.name);
 
@@ -30,9 +39,24 @@ Pet.prototype.DPS = function(callback){
     var child = this.children[i];
     child.DPS(callback);
   }
-}
+};
+
 var spike = new Pet("spike");
 
 spike.add("ben");
 
 spike.DPS();
+
+var arr = [1, [2, 3]];
+
+var printer = function(val) {
+   if ( Array.isArray(val) ) {
+       for (var i = 0; i < val.length; i++) {
+          printer( val[i] );
+       }
+   } else {
+       console.log(val);
+   }
+}
+
+printer(arr);
