@@ -49,14 +49,15 @@ spike.DPS();
 
 var arr = [1, [2, 3]];
 
-var printer = function(val) {
+var printer = function(val, spacer) {
    if ( Array.isArray(val) ) {
+       spacer += '-';
        for (var i = 0; i < val.length; i++) {
-          printer( val[i] );
+          printer( val[i], spacer );
        }
    } else {
-       console.log(val);
+       console.log(spacer + ' ' + val);
    }
 }
 
-printer(arr);
+printer(arr, '');
