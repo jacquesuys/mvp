@@ -72,13 +72,3 @@ function findIndex(arr, value) {
 
     return index;
 }
-
-var tree = new Tree(5);
-tree.add(6, 5, tree.traverse);
-tree.traverse(function(node){
-    console.log(node.value);
-});
-console.log(tree);
-
-tree.remove(6, 5, tree.traverse);
-console.log(tree);

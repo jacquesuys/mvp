@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Gen(od)ealogy - Genealogy for pets.</title>
+  <meta charset="UTF-8">
+  <title>Gen(od)ealogy - Genealogy for pets.</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 </head>
 
-<body>
-</body>
+<body></body>
+<script src="index.js"></script>
+<script>
+  $(document).ready(function () {
+    var tree = new Tree(5);
+    tree.add(6, 5, tree.traverse);
 
+    var $html = '<div>';
+
+    tree.traverse(function(node){
+        $html += '<div>' + node.value + '</div>';
+    });
+
+    $html += '</div>';
+
+    $('body').append($html);
+  });
+</script>
 </html>
