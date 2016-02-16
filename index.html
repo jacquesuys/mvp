@@ -11,17 +11,29 @@
 <script>
   $(document).ready(function () {
     var tree = new Tree(5);
-    tree.add(6, 5, tree.traverse);
 
-    var $html = '<div>';
+    // add(name, targetNode, traversalMethod)
+    tree.add(6, 5, tree.traverseDFS);
+    tree.add(4, 6, tree.traverseDFS);
+    tree.add(3, 6, tree.traverseDFS);
 
-    tree.traverse(function(node){
-        $html += '<div>' + node.value + '</div>';
-    });
+    var buildHTML = function(tree) {
 
-    $html += '</div>';
+      var $html = (function recurse(node) {
+        var str = '<div>';
 
-    $('body').append($html);
+        for (var i = 0; i < node.children.length; i++) {
+          str += recurse(node.children[i]);
+        }
+
+        str += node.value + '</div>';
+        return str;
+      })(tree);
+
+      $('body').append($html);
+    };
+
+    buildHTML(tree);
   });
 </script>
 </html>
