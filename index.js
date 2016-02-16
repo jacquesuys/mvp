@@ -1,24 +1,31 @@
 var Pet = function(name) {
   this.name = name;
   this.children = [];
+  this.parent = null;
 };
 
-Pet.prototype.add = function(name) {
+Pet.prototype.add = function(name, target, traversal) {
   var child = new Pet(name);
-  this.children.push(child);
+  var parent = null;
+  
+  var track = function(value, target) {
+    if (node.name === target) {
+      parent = node;
+    }
+  };
+
+  this.contains(track, traversal);
+
+  if (parent) {
+    parent.children.push(child);
+    child.parent = parent.name;
+  } else {
+    throw new Error('Can\'t find target node, to add');
+  }
 };
 
-Pet.prototype.contains = function(target) {
-  if ( this.name === target ) {
-    return true;
-  }
-  for ( var i = 0; i < this.children.length; i++ ) {
-    var child = this.children[i];
-    if (child.contains(target)) {
-      return true;
-    }
-  }
-  return false;
+Pet.prototype.contains = function(callback, traversal) {
+  traversal.call(this, callback);
 };
 
 Pet.prototype.remove = function(target) {
@@ -31,7 +38,6 @@ Pet.prototype.remove = function(target) {
 };
 
 Pet.prototype.DPS = function(callback){
-  console.log(this.name);
 
   if(!this.children) { return; }
 
@@ -47,17 +53,16 @@ spike.add("ben");
 
 spike.DPS();
 
-var arr = [1, [2, 3]];
+var arr = [1, [2, [3, [4, 5], 6], 7]];
 
 var printer = function(val, spacer) {
    if ( Array.isArray(val) ) {
-       spacer += '-';
        for (var i = 0; i < val.length; i++) {
-          printer( val[i], spacer );
+          printer( val[i], '  ' + spacer + '-');
        }
    } else {
-       console.log(spacer + ' ' + val);
+       console.log(spacer + ' (' + val + ')');
    }
 }
 
-printer(arr, '');
+printer(arr, '+-');
