@@ -10,20 +10,22 @@
 <script src="index.js"></script>
 <script>
   $(document).ready(function () {
-    var tree = new Pet(5);
 
-    // add(name, targetNode, traversalMethod)
-    tree.add(6, 5, tree.traverseDFS);
-    tree.add(4, 6, tree.traverseDFS);
-    tree.add(3, 6, tree.traverseDFS);
-
-    var pooches = {
+    var pooches = [
       {name: 'Poochy', sex: 'F', born: 1978, died: 1986, mother: null, father: null},
       {name: 'Lady', sex: 'F', born: 1983, died: 1991, mother: 'Poochy', father: 'Tiberius'},
       {name: 'Snoopy', sex: 'M', born: 1988, died: 1996, mother: 'Lady', father: 'Trump'},
       {name: 'Scooby', sex: 'M', born: 1988, died: 1997, mother: 'Lady', father: 'Trump'},
       {name: 'Lassie', sex: 'F', born: 1988, died: 1996, mother: 'Lady', father: 'Trump'},
       {name: 'Pookie', sex: 'M', born: 2000, died: 2008, mother: 'Lassie', father: 'unknown'}
+    ];
+
+    var ancestor = pooches.shift();
+
+    var tree = new Pet(ancestor.name, ancestor.mother);
+
+    for (var i = 0; i < pooches.length; i++) {
+      tree.add(pooches[i].name, pooches[i].mother, tree.traverseDFS);
     }
 
     var buildHTML = function(tree) {

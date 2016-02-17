@@ -1,8 +1,11 @@
-var Pet = function(name) {
+var Pet = function(name, mother) {
   this.name = name;
   this.children = [];
-  this.mother = null;
-  this.father = null;
+  this.mother = mother || null;
+  // this.father = null;
+  // this.born = 0;
+  // this.died = 0;
+  // this.sex = '?';
 };
 
 Pet.prototype.contains = function(callback, traverse){
@@ -10,7 +13,7 @@ Pet.prototype.contains = function(callback, traverse){
 }
 
 Pet.prototype.add = function(name, target, traverse) {
-  var child = new Pet(name);
+  var child = new Pet(name, mother);
   var mother = null;
 
   var callback = function(node) {
